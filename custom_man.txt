@@ -1,0 +1,14 @@
+.TH MYMAN 1 "AUGUST 2023" "Version 1.0" "My Program Manual"
+.SH NAME
+myman - our very own manual page for printf
+.SH SYNOPSIS
+
+.SH DESCRIPTION
+The printf function prints to the standard output
+.SH OPTIONS
+
+.SH EXAMPLES
+
+### AUTHORS
+- [Gyamfi Mike](https://github.com/Mgyamfi9)
+- [Kotey Jonathan](https://github.com/kofilolx)
