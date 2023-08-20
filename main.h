@@ -10,8 +10,8 @@ int _putchar(char c);
 int _printf(const char *format, ...);
 
 /* function prototype of list of specifier */
-int print_char(va_list c);
-int print_string(va_list s);
+int _printf_char(va_list c);
+int _printf_string(va_list s);
 
 /**
  * struct function_syntax - list of datatypes and specifiers
@@ -21,7 +21,7 @@ int print_string(va_list s);
  * Return: nothing
  */
 
-typedef struct function_syntax
+typedef struct _f_syntax
 {
 	char *specifier;
 	int (*f)(va_list);
