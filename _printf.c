@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * format_vault - returns required format
@@ -14,14 +13,14 @@ int (*format_vault(const char *format))(va_list)
 
 	f_syntax f_valut[] = {
 		{"c", _printf_char},
-		{"%", _printf_per},
+		{"d", _printf_dec},
 		{"i", _printf_int},
 		{"s", _printf_string}
 		{NULL, NULL}
 	};
 
 	i = 0;
-	while (f_valut[i].specifier)
+	while (f_valut[i].specifier != NULL)
 	{
 		if (f_vault[i].specifier[i] == (*format))
 		{
@@ -30,8 +29,6 @@ int (*format_vault(const char *format))(va_list)
 		i++;
 	}
 	return (NULL);
-
-
 }
 
 
@@ -56,7 +53,7 @@ int _printf(const char *format, ...)
 	va_start(argsList, format);
 
 	/* try to fit mikes line here to look more collaborative */
-
+	while (format[i] = )
 
 	/* Cleans up argument list */
 	va_end(argsList);
