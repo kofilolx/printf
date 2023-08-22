@@ -11,16 +11,16 @@ int (*format_vault(const char *format))(va_list)
 {
 	unsigned int i;
 
-	f_syntax f_valut[] = {
+	f_syntax f_vault[] = {
 		{"c", _printf_char},
-		{"d", _printf_dec},
+		/* {"d", _printf_dec},
 		{"i", _printf_int},
-		{"s", _printf_string}
+		{"s", _printf_string},*/
 		{NULL, NULL}
 	};
 
 	i = 0;
-	while (f_valut[i].specifier != NULL)
+	while (f_vault[i].specifier != NULL)
 	{
 		if (f_vault[i].specifier[i] == (*format))
 		{
@@ -42,23 +42,50 @@ int (*format_vault(const char *format))(va_list)
 
 int _printf(const char *format, ...)
 {
-	unsigned int j;
+	/* unsigned int j; */
 	va_list argsList;
-	int (*f)(va_list);
+	/* int (*f)(va_list); */
 
-	if (format == NULL || format == '\0')
+	if (format == NULL)
 		return (-1);
 
 	/* initialization of list */
 	va_start(argsList, format);
 
 	/* try to fit mikes line here to look more collaborative */
-	while (format[i] = )
-
+	while (*format != '\0')
+        {
+                if (*format == '%')
+                {
+                        format++;
+                        switch (*format)
+                        {
+                                case 'd':
+                                        printf("%d", va_arg(argsList, int));
+                                        break;
+                                case 's':
+                                        printf("%s", va_arg(argsList, char *));
+                                        break;
+                                case 'f':
+                                        printf("%f", va_arg(argsList, char *));
+                                        break;
+                                case 'x':
+                                        printf("%x", va_arg(argsList, char *));
+                                        break;
+                                default:
+                                        putchar('%');
+                                        putchar(*format);
+                                        break;
+                        }
+                }
+                else
+                        putchar(*format);
+                format++;
+        }
 	/* Cleans up argument list */
 	va_end(argsList);
 
 	/* should return and int value */
-	return (int);
+	return (1);
 }
 

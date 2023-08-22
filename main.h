@@ -11,7 +11,9 @@ int _printf(const char *format, ...);
 
 /* function prototype of list of specifier */
 int _printf_char(va_list c);
-int _printf_string(va_list s);
+/* int _printf_string(va_list s);
+int _printf_int(va_list i);
+int _printf_dec(va_list d);*/
 
 /**
  * struct function_syntax - list of datatypes and specifiers
