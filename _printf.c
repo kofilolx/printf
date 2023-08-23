@@ -50,10 +50,10 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 			{
 				char *s_arg = va_arg(argList, char *);
-				int strLen = 0;
+				int strLen = strlen(s_arg);
 
-				while (s_arg[strLen] != '\0')
-					strLen++;
+				/*while (s_arg[strLen] != '\0')*/
+					/*strLen++;*/
 
 				write(1, &s_arg, strLen);
 				nxt_char += strLen;
