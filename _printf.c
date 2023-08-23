@@ -22,41 +22,40 @@ int _printf(const char *format, ...)
 
 	while (*format)
 	{
-		if (*format != '%')
+		if (*format != '\0')
 		{
-			write(1, format, 1);
-			nxt_char++;
-		}
-		else
-		{
-			format++;
-			if (*format == '\0')
-				break;
-
-			if (*format == '%')
+			if (*format != '%')
 			{
 				write(1, format, 1);
 				nxt_char++;
 			}
-
-			else if (*format == 'c')
+			else
 			{
-				char c_arg = va_arg(argList, int);
+				format++;
+				if (*format == '\0')
+					break;
 
-				write(1, &c_arg, 1);
-				nxt_char++;
-			}
+				if (*format == '%')
+				{
+					write(1, format, 1);
+					nxt_char++;
+				}
+				else if (*format == 'c')
+				{
+					char c_arg = va_arg(argList, int);
 
-			else if (*format == 's')
-			{
-				char *s_arg = va_arg(argList, char *);
-				int strLen = strlen(s_arg);
+					write(1, &c_arg, 1);
+					nxt_char++;
+				}
 
-				/*while (s_arg[strLen] != '\0')*/
-					/*strLen++;*/
+				else if (*format == 's')
+				{
+					char *s_arg = va_arg(argList, char *);
+					int strLen = strlen(s_arg);
 
-				write(1, &s_arg, strLen);
-				nxt_char += strLen;
+					write(1, &s_arg, strLen);
+					nxt_char += strLen;
+				}
 			}
 		}
 		format++;
