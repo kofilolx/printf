@@ -8,5 +8,7 @@
 #include <stdlib.h>
 
 int _printf(const char *format, ...);
+void print_hex_address(void *p_arg, int *nxt_char);
+
 
 #endif
