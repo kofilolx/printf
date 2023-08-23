@@ -11,57 +11,73 @@
 
 int _printf(const char *format, ...)
 {
-	int nxt_char = 0;
+	int itr, nxt_char = 0;
+	int jmp;
 	va_list argList;
 
-	if (format == NULL)
-		return (-1);
+	f_syntax sp_f[] = {
+		{'c', prt_char},
+		{'s', prt_str},
+		{'%', prt_mod},
+		{'i', prt_int},
+		{'d', prt_int},
+		{'r', rev_string},
+		{'x', prt_hex},
+		{'X', prt_Hex},
+		{'o', prt_oct},
+		{'u', prt_unsigned},
+		{'b', prt_bin},
+		{'p', prt_add},
+		{'S', prt_ex_str},
+		{'\0', NULL}
+	};
 
-	/* Initialize va start */
 	va_start(argList, format);
 
-	while (*format)
+	if ((!format) || (format[0] == '%' && !format[1]))
+		return (-1);
+
+	while (format[itr])
 	{
-		if (*format != '\0')
+		if (format[itr] == '%')
 		{
-			if (*format != '%')
+			if (format[itr + 1] == '\0')
+				return (-1);
+
+			if (format[itr + 1] == '+' || format[itr + 1] == ' ')
 			{
-				write(1, format, 1);
-				nxt_char++;
+				va_list dst;
+
+				va_copy(dst, argList);
+				nxt_char += op_space(format[itr + 1], va_arg(dst, int));
+				itr++;
 			}
-			else
+			else if (format[itr + 1] == '#')
 			{
-				format++;
-				if (*format == '\0')
+				nxt_char += _hash(format[itr + 2], &i);
+			}
+			jmp = 0;
+			while (jmp <= 12)
+			{
+				if (format[itr + 1] == sp_f[jmp].specifier)
+				{
+					nxt_char += sp_f[jmp].f(argList);
+					itr += 2;
 					break;
-
-				if (*format == '%')
-				{
-					write(1, format, 1);
-					nxt_char++;
 				}
-				else if (*format == 'c')
-				{
-					char c_arg = va_arg(argList, int);
-
-					write(1, &c_arg, 1);
-					nxt_char++;
-				}
-
-				else if (*format == 's')
-				{
-					char *s_arg = va_arg(argList, char *);
-					int strLen = strlen(s_arg);
-
-					write(1, &s_arg, strLen);
-					nxt_char += strLen;
-				}
+				jmp++;
 			}
 		}
-		format++;
+		else
+		{
+			_putchar(format[itr]);
+			nxt_char++;
+			itr++;
+		}
 	}
 
-	/* Clean up argument list */
+	/* cleans up the argument list */
+
 	va_end(argList);
 	return (nxt_char);
 }
