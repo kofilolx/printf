@@ -52,7 +52,7 @@ int _printf(const char *format, ...)
 				char *s_arg = va_arg(argList, char *);
 				int strLen = 0;
 
-				while s_arg[strLen] != '\0')
+				while (s_arg[strLen] != '\0')
 					strLen++;
 
 				write(1, &s_arg, strLen);
