@@ -13,11 +13,11 @@ int op_space(int c, int n);
 int _hash(char c, int *i);
 
 /**
-* struct prog_structure - Struct format
+* struct format - Struct format
 * @specifier: Formats char, int, decimal, string
 * @f: Function pointer
 * */
-typedef struct prog_structure
+typedef struct format
 {
 	char *specifier;
 	int (*f)(va_list);

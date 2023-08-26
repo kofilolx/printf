@@ -15,13 +15,13 @@ int _printf(const char *format, ...)
 		{'s', prt_string},
 		{'%', prt_mod},
 		{'i', prt_int},
-		{'d', prt_int},
+		{'b', prt_bin},
 		{'r', rev_string},
-		{'x', prt_hex},
 		{'X', prt_Hex},
+		{'x', prt_hex},
 		{'o', prt_octal},
 		{'u', prt_unsigned},
-		{'b', prt_bin},
+		{'d', prt_dec},
 		{'p', prt_add},
 		{'S', prt_ex_str},
 		{NULL, NULL}
@@ -30,12 +30,14 @@ int _printf(const char *format, ...)
 	va_start(argList, format);
 	if ((!format) || (format[0] == '%' && !format[1]))
 		return (-1);
+
 	while (format[itr])
 	{
 		if (format[itr] == '%')
 		{
 			if (format[itr + 1] == '\0')
 				return (-1);
+
 			if (format[itr + 1] == '+' || format[itr + 1] == ' ')
 			{
 				va_list dst;
@@ -44,9 +46,10 @@ int _printf(const char *format, ...)
 				nxt_char += op_space(format[itr + 1], va_arg(dst, int));
 				itr++;
 			}
+
 			else if (format[itr + 1] == '#')
 			{
-				nxt_char += _hash(format[itr + 2], &i);
+				nxt_char += _hash(format[itr + 2], &itr);
 			}
 
 			j = 0;
@@ -70,5 +73,6 @@ int _printf(const char *format, ...)
 	}
 	/* cleans up the argument list */
 	va_end(argList);
+
 	return (nxt_char);
 }
