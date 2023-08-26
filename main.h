@@ -1,17 +1,16 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-/* Inclusion of External Libraries **/
 #include <stdarg.h>
 #include <stdio.h>
 #include <limits.h>
 #include <stdlib.h>
 
-/* Prototypes function container */
-int _putchar (int n);
-int _printf (const char *format, ...);
+/* Prototype function container */
+int _putchar(int n);
+int _printf(const char *format, ...);
 int op_space(int c, int n);
-int _hash (char c, int *i);
+int _hash(char c, int *i);
 
 /**
 * struct prog_structure - Struct format
@@ -39,3 +38,5 @@ int prt_char(va_list argList);
 int prt_int(va_list argList);
 int prt_mod(va_list argList);
 int prt_string(va_list argList);
+
+#endif
