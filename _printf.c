@@ -1,5 +1,7 @@
 #include "main.h"
 
+int op_space(int c, int n);
+
 /**
  * _printf - print f function
  * @format: character string will be printed
@@ -15,16 +17,16 @@ int _printf(const char *format, ...)
 		{'s', prt_string},
 		{'%', prt_mod},
 		{'i', prt_int},
-		{'b', prt_bin},
+		{'d', prt_int},
 		{'r', rev_string},
-		{'X', prt_Hex},
 		{'x', prt_hex},
+		/*{'X', prt_Hex},*/
 		{'o', prt_octal},
 		{'u', prt_unsigned},
-		{'d', prt_dec},
+		{'b', prt_bin},
 		{'p', prt_add},
 		{'S', prt_ex_str},
-		{NULL, NULL}
+		{'S', prt_ex_str}
 	};
 	/* initialization of arg list */
 	va_start(argList, format);
@@ -75,4 +77,30 @@ int _printf(const char *format, ...)
 	va_end(argList);
 
 	return (nxt_char);
+}
+
+/**
+ * op_space - handle plus and spaces after % sign
+ * @c: the char after %
+ * @n: number to be printed
+ * Return: length of char
+ */
+int op_space(int c, int n)
+{
+        int l = 0;
+
+        if (c == '+')
+        {
+                if (n > 0)
+                {
+                        _putchar ('+');
+                        l++;
+                }
+        }
+        else
+        {
+                _putchar (' ');
+                l++;
+        }
+        return (l);
 }

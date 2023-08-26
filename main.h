@@ -7,9 +7,8 @@
 #include <stdlib.h>
 
 /* Prototype function container */
-int _putchar(int n);
+int _putchar(char n);
 int _printf(const char *format, ...);
-int op_space(int c, int n);
 int _hash(char c, int *i);
 
 /**
@@ -19,15 +18,15 @@ int _hash(char c, int *i);
 * */
 typedef struct format
 {
-	char *specifier;
+	char specifier;
 	int (*f)(va_list);
 } f_syntax;
 
 void prt_Hexadecimal(unsigned int num, int *p);
 int prt_ex_str(va_list argList);
 int prt_hex_ptr(va_list argList);
-int prt_address(va_list argList);
-int prt_binary(va_list argList);
+int prt_add(va_list argList);
+int prt_bin(va_list argList);
 int prt_unsigned(va_list argList);
 int prt_octal(va_list argList);
 int prt_hex(va_list argList);
