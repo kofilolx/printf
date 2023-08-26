@@ -1,42 +1,48 @@
-#ifndef _MAIN_H
-#define _MAIN_H
+#ifndef MAIN_H
+#define MAIN_H
 
-/* Inclusion of External Libraries **/
-#include <stdarg.h>
 #include <stdio.h>
-#include <limits.h>
 #include <stdlib.h>
+#include <stdarg.h>
+#include <limits.h>
+#include <unistd.h>
 
-int _putchar(int n);
-int _printf(const char *format, ...);
-int op_space(int c, int n);
-int _hash(char c, int *i);
+int _putchar(char c);
+int _printf(const char *format, ...)
 
 /**
-* struct prog_structure - Struct format
-* @specifier: Formats char, int, decimal, string
-* @f: Function pointer
-*/
+ * struct format - match the conversion specifiers for printf
+ * @symb: type char pointer of the specifier i.e (l, h) for (d, i, u, o, x, X)
+ * @f: type pointer to function for the conversion specifier
+ *
+ */
 
-struct prog_structure {
-	char *specifier;
-	int (*f)(va_list);
-} f_syntax;
+typedef struct format
+{
+	char *symb;
+	int (*f)();
+} convert_match;
 
-int prt_hex_ptr(va_list argList);
-void prt_Hexadecimal(unsigned int num, int *p);
-int prt_ex_str(va_list argList);
-int prt_add(va_list argList);
-int prt_bin(va_list argList);
-int prt_unsigned(va_list argList);
-int prt_oct(va_list argList);
-int prt_hex(va_list argList);
-int prt_Hex(va_list argList);
-int rev_string(va_list argList);
-int len_char(int argList);
-int prt_int(va_list argList);
-int prt_mod(va_list argList);
-int prt_int(va_list argList);
-int prt_string(va_list argList);
+int printf_pointer(va_list val);
+int printf_hex_aux(unsigned long int num);
+int printf_HEX_aux(unsigned int num);
+int printf_exclusive_string(va_list val);
+int printf_hex(va_list val);
+int printf_Hex(va_list val);
+int printf_oct(va_list val);
+int printf_unsigned(va_list args);
+int printf_bin(va_list val);
+int printf_dec(va_list args);
+int printf_rot13(va_list args);
+int printf_int(va_list args);
+int printf_srev(va_list args);
+int _strlen(char *s);
+int *_strcpy(char *dest, char *src);
+int _strlenc(const char *s);
+int rev_string(char *s);
+int _strlenc(const char *s);
+int printf_37(void);
+int printf_char(va_list val);
+int printf_string(va_list val);
 
 #endif

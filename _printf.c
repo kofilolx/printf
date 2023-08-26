@@ -1,83 +1,45 @@
 #include "main.h"
-#include <stdarg.h>
-#include <stdio.h>
-#include <limits.h>
-
 /**
- * _printf - The functions evokes result in accordance to the _printf
- * @format: format (char, string, int)
- * Return: nxt_char
+ * _printf - is a function that selects the correct function to print.
+ * @format: identifier to look for.
+ * Return: the length of the string.
  */
-
-int _printf(const char *format, ...)
+int _printf(const char * const format, ...)
 {
-	int itr, nxt_char = 0;
-	int jmp;
-	va_list argList;
-
-	f_syntax sp_f[] = {
-		{'c', prt_char},
-		{'s', prt_str},
-		{'%', prt_mod},
-		{'i', prt_int},
-		{'d', prt_int},
-		{'r', rev_string},
-		{'x', prt_hex},
-		{'X', prt_Hex},
-		{'o', prt_oct},
-		{'u', prt_unsigned},
-		{'b', prt_bin},
-		{'p', prt_add},
-		{'S', prt_ex_str},
-		{'\0', NULL}
+	convert_match m[] = {
+		{"%s", printf_string}, {"%c", printf_char},
+		{"%%", printf_37},
+		{"%i", printf_int}, {"%d", printf_dec}, {"%r", printf_srev},
+		{"%R", printf_rot13}, {"%b", printf_bin}, {"%u", printf_unsigned},
+		{"%o", printf_oct}, {"%x", printf_hex}, {"%X", printf_HEX},
+		{"%S", printf_exclusive_string}, {"%p", printf_pointer}
 	};
 
-	va_start(argList, format);
+	va_list args;
+	int i = 0, j, len = 0;
 
-	if ((!format) || (format[0] == '%' && !format[1]))
+	va_start(args, format);
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
-	while (format[itr])
+Here:
+	while (format[i] != '\0')
 	{
-		if (format[itr] == '%')
+		j = 13;
+		while (j >= 0)
 		{
-			if (format[itr + 1] == '\0')
-				return (-1);
-
-			if (format[itr + 1] == '+' || format[itr + 1] == ' ')
+			if (m[j].symb[0] == format[i] && m[j].symb[1] == format[i + 1])
 			{
-				va_list dst;
-
-				va_copy(dst, argList);
-				nxt_char += op_space(format[itr + 1], va_arg(dst, int));
-				itr++;
+				len += m[j].f(args);
+				i = i + 2;
+				goto Here;
 			}
-			else if (format[itr + 1] == '#')
-			{
-				nxt_char += _hash(format[itr + 2], &i);
-			}
-			jmp = 0;
-			while (jmp <= 12)
-			{
-				if (format[itr + 1] == sp_f[jmp].specifier)
-				{
-					nxt_char += sp_f[jmp].f(argList);
-					itr += 2;
-					break;
-				}
-				jmp++;
-			}
+			j--;
 		}
-		else
-		{
-			_putchar(format[itr]);
-			nxt_char++;
-			itr++;
-		}
+		_putchar(format[i]);
+		len++;
+		i++;
 	}
-
-	/* cleans up the argument list */
-
-	va_end(argList);
-	return (nxt_char);
+	va_end(args);
+	return (len);
 }
