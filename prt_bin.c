@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * bin_n - recrertion fun convert dec to bin
+ * bin_n - convert dec to bin
  * @num: number
  * @len_pt: len
  * Return: void
