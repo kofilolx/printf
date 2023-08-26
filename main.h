@@ -18,9 +18,10 @@ int _hash (char c, int *i);
 * @specifier: Formats char, int, decimal, string
 * @f: Function pointer
 * */
-struct prog_structure {
-char *specifier;
-int (*f)(va_list);
+typedef struct prog_structure
+{
+	char *specifier;
+	int (*f)(va_list);
 } f_syntax;
 
 void prt_Hexadecimal(unsigned int num, int *p);
@@ -35,6 +36,6 @@ int prt_Hex(va_list argList);
 int rev_string(va_list argList);
 int len_int(int argList);
 int prt_char(va_list argList);
-int prt_mod(va_list argList);
 int prt_int(va_list argList);
+int prt_mod(va_list argList);
 int prt_string(va_list argList);
