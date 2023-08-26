@@ -1,9 +1,9 @@
-#ifndef_MAIN_H
-#define_MAIN_H
+#ifndef MAIN_H
+#define MAIN_H
 
 /* Inclusion of External Libraries **/
-include <stdarg.h>
-include <stdio.h>
+#include <stdarg.h>
+#include <stdio.h>
 #include <limits.h>
 #include <stdlib.h>
 
