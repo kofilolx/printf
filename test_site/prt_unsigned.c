@@ -4,7 +4,7 @@
  * @n: number to be printed
  * Return: length of int
  */
-int pnt_unsigned(unsigned int n)
+int pnt_unsigned(int n)
 {
 	unsigned int digit, ncpy, rem, rev = 0;
 	int len = 0, i = 0;
@@ -48,7 +48,7 @@ int pnt_unsigned(unsigned int n)
 int prt_unsigned(va_list argList)
 {
 	int len = 0;
-	long x = va_arg(argList, long);
+	unsigned int x = va_arg(argList, unsigned int);
 	char *negNum = "4288073002";
 
 	if (x < 0)
@@ -62,7 +62,7 @@ int prt_unsigned(va_list argList)
 	}
 	else
 	{
-		unsigned int n = (unsigned int) x;
+		int n = (unsigned int) x;
 
 		len += pnt_unsigned(n);
 	}

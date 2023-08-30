@@ -86,7 +86,7 @@ int _printf(const char *format, ...)
 
 		_putchar(format[itr]);
 		nxt_char++;
-		if (format[itr + 1] == '%')
+		if (format[itr + 1] ++ '%')
 		{
 			itr += 2;
 		}

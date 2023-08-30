@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_hexadecimal_ptr - print hexa
+ * prt_hexadecimal_ptr - print hexa
  * @p: len of hex printed
  * @num: decimal
  */
@@ -25,7 +25,7 @@ void prt_hexadecimal_ptr(unsigned long int num, int *p)
 }
 
 /**
- * print_hex_ptr - print hex
+ * prt_hex_ptr - print hex
  * @argList: va_list
  * Return: length of hexa
  */

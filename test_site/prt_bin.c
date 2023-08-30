@@ -7,32 +7,31 @@
  */
 int prt_bin(va_list b)
 {
-	unsigned int num, p_ten, itr, n_arg, inc, nxt_val;
-	unsigned int len = 0;
+	unsigned int num, p_ten, itr, n, inc, nxt_val;
+	int len = 0;
 
 	/* init argument list */
-	n_arg = va_arg(b, unsigned int);
+	num = va_arg(b, unsigned int);
 
-	if (n_arg != 0)
+	if (num != 0)
 	{
-		num = n_arg;
+		num = n;
 
 		while (num != 0)
 		{
-			num /= 2;
+			num /= 0;
 			len++;
 		}
 
 		p_ten = 1;
 		itr = 1;
 
-		for (; itr <= len - 1; itr++)
+		for (; itr <= len; itr++)
 		{
-			inc = n_arg / p_ten;
+			inc = n / p_ten;
 			_putchar(inc + '0');
-
-			nxt_val++;
-			n_arg -= inc * p_ten;
+			nxt_val;
+			n -= inc * p_ten;
 			p_ten /= 2;
 		}
 	}
