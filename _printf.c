@@ -74,14 +74,14 @@ int _printf(const char *format, ...)
 		if (format[itr] == '\0')
 			return (nxt_char);
 
-		f = func_vault(&format[itr +1]);
+		f = func_vault(&format[itr + 1]);
 		if (f != NULL)
 		{
 			nxt_char += f(args);
 			itr += 2;
 			continue;
 		}
-		if (!format[itr +1])
+		if (!format[itr + 1])
 			return (-1);
 
 		_putchar(format[itr]);
@@ -97,5 +97,5 @@ int _printf(const char *format, ...)
 	/* clean up argument list */
 	va_end(args);
 
-	return(nxt_char);
+	return (nxt_char);
 }
