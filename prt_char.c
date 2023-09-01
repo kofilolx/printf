@@ -14,7 +14,11 @@ int prt_char(va_list c)
 /**
  * prt_percentage - percent symbol %
  *
+<<<<<<< HEAD
  * Return: 1 success
+=======
+ * return: 1 success
+>>>>>>> remote_commits
  */
 int prt_percentage(void)
 {
