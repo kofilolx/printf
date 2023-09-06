@@ -1,4 +1,4 @@
-include "main.h"
+#include "main.h"
 
 /**
  * prt_hex - Function that prints hexadecimals
